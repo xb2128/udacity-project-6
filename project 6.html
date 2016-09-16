@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("body", 900, 600);
+d3.csv("titanic.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(315, 150, 500, 300)
+      myChart.addCategoryAxis("x",[ "Pclass","Sex"]);
+      myChart.addMeasureAxis("y", "num");
+      myChart.addSeries("survival", dimple.plot.bar);
+      myChart.addLegend(450, 130, 380, 40, "right");
+      myChart.draw();
+});
+svg.append("text")
+   .attr("x" ,550)
+   .attr("y" ,100)
+   .style("text-anchor", "middle")
+   .style("font-family", "sans-serif")
+   .style("font-weight", "bold")
+   .text("Number of men and women survived in 1st, 2nd and 3rd class in Titanic")
+  </script>
+</body>
